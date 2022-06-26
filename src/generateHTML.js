@@ -1,5 +1,3 @@
-
-
 const generateHTMLPage = function (employeeCards) {
 //Generates base HTML
     return `
@@ -20,7 +18,7 @@ const generateHTMLPage = function (employeeCards) {
 
     <section>
         <div class="container">
-            ${employeeCards}
+        ${employeeCards}
         </div>
     </section>
 
@@ -80,7 +78,6 @@ generateHTML = (data) => {
 
             pageArray.push(internCard);
         }
-        
     }
 
     // joining strings 
