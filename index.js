@@ -6,6 +6,8 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+const generateHTMLPage = require("./src/generateHTML");
+
 const teamArray = [];
 
 const startQuestions = () => {
@@ -53,7 +55,7 @@ const startQuestions = () => {
         {
             type: 'input',
             name: 'officeNumber',
-            message: "Enter the manager's office number",
+            message: "Enter the manager's office number:",
             validate: nameInput => {
                 if  (isNaN(nameInput)) {
                     console.log ('Please enter an office number!')
@@ -189,10 +191,11 @@ const addEmployee = () => {
 startQuestions()
   .then(addEmployee)
   .then(teamArray => {
-    return generateHTML(teamArray);
+    return generateHTMLPage(teamArray);
   })
   .then(pageHTML => {
-    return writeFile(pageHTML);
+    console.log(pageHTML);
+    return fs.writeFile(pageHTML);
   })
   .catch(err => {
  console.log(err);
