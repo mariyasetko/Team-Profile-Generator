@@ -70,8 +70,7 @@ const startQuestions = () => {
         const  { name, id, email, officeNumber } = managerInput; 
         const manager = new Manager (name, id, email, officeNumber);
 
-        teamArray.push(manager); 
-        console.log(manager); 
+        teamArray.push(manager);  
     })
 };
 
@@ -161,25 +160,18 @@ const addEmployee = () => {
         }
     ])
     .then(employeeInfo => {
-        // data for employee types 
+        if (employeeInfo.role === "Engineer") {
+            const engineer = new Engineer (employeeInfo.name, employeeInfo.id, employeeInfo.email, employeeInfo.github);
+            teamArray.push(engineer);
+        
 
-        let { name, id, email, role, github, school, confirmAddEmployee } = employeeInfo; 
-        let employee; 
+        } else if (employeeInfo.role === "Intern") {
+            const intern = new Intern (employeeInfo.name, employeeInfo.id, employeeInfo.email, employeeInfo.school);
 
-        if (role === "Engineer") {
-            employee = new Engineer (name, id, email, github);
-
-            console.log(employee);
-
-        } else if (role === "Intern") {
-            employee = new Intern (name, id, email, school);
-
-            console.log(employee);
+            teamArray.push(intern);
         }
 
-        teamArray.push(employee); 
-
-        if (confirmAddEmployee) {
+        if (employeeInfo.confirmAddEmployee) {
             return addEmployee(teamArray); 
         } else {
             return teamArray;
@@ -205,7 +197,11 @@ function init(){
     startQuestions()
     .then(addEmployee)
     .then(teamArray => {
-      return generateHTMLPage(teamArray);
+        console.log(teamArray);
+        
+      return generateHTMLPage(
+        generateHTML(teamArray)
+        );
     })
     .then(pageHTML => {
       let createHTML = writeFile(pageHTML);

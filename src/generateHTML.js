@@ -49,36 +49,35 @@ const generateManager = function (Manager) {
 
 // push array to page 
 generateHTML = (data) => {
-
     // array for cards 
     pageArray = []; 
 
     for (let i = 0; i < data.length; i++) {
-        const employee = data[i];
-        const role = employee.getRole(); 
+        const Employee = data[i];
+        const role = Employee.getRole(); 
 
 
         // call manager function
         if (role === 'Manager') {
-            const managerCard = generateManager(employee);
+            const managerCard = generateManager(Employee);
 
             pageArray.push(managerCard);
         }
 
         // call engineer function
         if (role === 'Engineer') {
-            const engineerCard = generateEngineer(employee);
+            const engineerCard = generateEngineer(Employee);
 
             pageArray.push(engineerCard);
         }
 
         // call intern function 
         if (role === 'Intern') {
-            const internCard = generateIntern(employee);
+            const internCard = generateIntern(Employee);
 
             pageArray.push(internCard);
         }
-    }
+    };
 
     // joining strings 
     const employeeCards = pageArray.join('')
