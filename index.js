@@ -198,10 +198,8 @@ function init(){
     .then(addEmployee)
     .then(teamArray => {
         console.log(teamArray);
-        
-      return generateHTMLPage(
-        generateHTML(teamArray)
-        );
+        return generateHTML(teamArray);
+
     })
     .then(pageHTML => {
       let createHTML = writeFile(pageHTML);
