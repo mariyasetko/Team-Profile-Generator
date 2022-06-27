@@ -108,7 +108,7 @@ const generateEngineer = function (Engineer) {
 };
 
 //generates Intern card html
-const addIntern = function (Intern) {
+const generateIntern = function (Intern) {
     return `
     <div class="col-4 mt-4">
         <div class="card h-100">
